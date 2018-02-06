@@ -44,6 +44,9 @@ for item in data["applist"]["apps"]:
 						# Insert a new element called genre in the entry in the JSON object
 						# item["genres"] = genres
 						data_list[str(current_appid)] = genres
+						
+						with open('applist_genre.json','a') as f:
+    						json.dump(data_list, f)
 				else:
 					print(str(current_appid))
 					item["genres"] = []
