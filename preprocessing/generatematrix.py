@@ -33,41 +33,42 @@ for file_name in file_list:
 
 		if data is not None:
 			if data["response"] is not None:
-				if data["response"]["games"] is not None:
-					# Traverse through each game owned by the user
-					for item in data["response"]["games"]:
+				if data["response"]["game_count"] != 0:
+					if data["response"]["games"] is not None:
+						# Traverse through each game owned by the user
+						for item in data["response"]["games"]:
 
-						print(item["appid"])
+							print(item["appid"])
 
-						# if genre list contains the game item
-						if applist_data[str(item["appid"])] is not None:
+							# if genre list contains the game item
+							if applist_data[str(item["appid"])] is not None:
 
-							# Loop through the genres of the said item
-							for genres in applist_data[str(item["appid"])]:
+								# Loop through the genres of the said item
+								for genres in applist_data[str(item["appid"])]:
 
-								if genres["id"] is not None:
-									if genres["id"] == '1':
-										genre_features[1] = genre_features[1] + 1
-									elif genres["id"] == '2':
-										genre_features[2] = genre_features[2] + 1
-									elif genres["id"] == '3':
-										genre_features[3] = genre_features[3] + 1
-									elif genres["id"] == '23':
-										genre_features[4] = genre_features[4] + 1
-									elif genres["id"] == '25':
-										genre_features[5] = genre_features[5] + 1
-									elif genres["id"] == '18':
-										genre_features[6] = genre_features[6] + 1
-									elif genres["id"] == '28':
-										genre_features[7] = genre_features[7] + 1
-									elif genres["id"] == '29':
-										genre_features[8] = genre_features[8] + 1
-									elif genres["id"] == '37':
-										genre_features[9] = genre_features[9] + 1
-									elif genres["id"] == '4':
-										genre_features[10] = genre_features[10] + 1
+									if genres["id"] is not None:
+										if genres["id"] == '1':
+											genre_features[1] = genre_features[1] + 1
+										elif genres["id"] == '2':
+											genre_features[2] = genre_features[2] + 1
+										elif genres["id"] == '3':
+											genre_features[3] = genre_features[3] + 1
+										elif genres["id"] == '23':
+											genre_features[4] = genre_features[4] + 1
+										elif genres["id"] == '25':
+											genre_features[5] = genre_features[5] + 1
+										elif genres["id"] == '18':
+											genre_features[6] = genre_features[6] + 1
+										elif genres["id"] == '28':
+											genre_features[7] = genre_features[7] + 1
+										elif genres["id"] == '29':
+											genre_features[8] = genre_features[8] + 1
+										elif genres["id"] == '37':
+											genre_features[9] = genre_features[9] + 1
+										elif genres["id"] == '4':
+											genre_features[10] = genre_features[10] + 1
 
-									print(genre_features)
+										print(genre_features)
 
 						
 		
