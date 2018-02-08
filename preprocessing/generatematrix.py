@@ -24,7 +24,7 @@ for file_name in file_list:
 	# Casual 				[10] 4
 
 	# Make an array of corresponding features
-	genre_features = [file_name[:-5], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	genre_features = [file_name[:-5], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 	# Open the file indicated by the current file name
 	if file_name != ".DS_Store":
