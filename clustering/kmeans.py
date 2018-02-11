@@ -32,3 +32,15 @@ def kmeans_clustering():
     # Write dataframe to file
     df_tr.to_csv('out.csv')
     
+def plotting(df_tr):
+    sns.lmplot('action', 'strategy', 
+           data=df_tr, 
+           fit_reg=False, 
+           hue="clusters",  
+           scatter_kws={"marker": "D", 
+                        "s": 100})
+    plt.title('Clusters Action vs Strategy')
+    plt.xlabel('Action')
+    plt.ylabel('Strategy')
+
+    plt.show()
