@@ -36,3 +36,10 @@ for file_name in file_list:
 							percentage = item["playtime_forever"] / totalgametime
 
 							# insert if statements of the "ratings"
+							
+						with open('ratings.csv', 'a', newline='') as csvfile:				
+							csvwriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+							csvwriter.writerow([ratings[0],
+								str(ratings[1]), 
+								str(ratings[2]),
+							])	
