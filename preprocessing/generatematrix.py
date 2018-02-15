@@ -82,15 +82,16 @@ for file_name in file_list:
 						i = i + 1
 						print("Files processed: ", i)
 						# Print to CSV file tbh	
-						with open('matrixdata.csv', 'a', newline='') as csvfile:				
-							csvwriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
-							csvwriter.writerow([genre_features[0], str(genre_features[1]), 
-								str(genre_features[2]),
-								str(genre_features[3]),
-								str(genre_features[4]),
-								str(genre_features[5]),
-								str(genre_features[6]),
-								str(genre_features[7]),
-								str(genre_features[8]),
-								str(genre_features[9]),
-								str(genre_features[10])])	
+						if genre_features != [file_name[:-5], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]:
+							with open('matrixdata.csv', 'a', newline='') as csvfile:				
+								csvwriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+								csvwriter.writerow([genre_features[0], str(genre_features[1]), 
+									str(genre_features[2]),
+									str(genre_features[3]),
+									str(genre_features[4]),
+									str(genre_features[5]),
+									str(genre_features[6]),
+									str(genre_features[7]),
+									str(genre_features[8]),
+									str(genre_features[9]),
+									str(genre_features[10])])	
