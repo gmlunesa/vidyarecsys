@@ -3,7 +3,7 @@ import os.path
 import csv
 import json
 
-with open("preprocessing/applist_genre.json", encoding="utf8") as applist:
+with open("applist_genre.json", encoding="utf8") as applist:
   applist_data = json.load(applist)
 
 # Retrieve file names in the directory
@@ -50,7 +50,12 @@ for file_name in file_list:
 								i =  i + 1
 
 						# Calculate space between playtimes
-						space = highest_playtime - lowest_playtime
+						# if highest_playtime == lowest_playtime:
+						# 	space = highest_playtime
+						# else:
+						# 	space = highest_playtime - lowest_playtime
+
+						space = highest_playtime
 
 						# Get percentage
 						# Save to CSV
@@ -59,21 +64,26 @@ for file_name in file_list:
 
 							for item in data["response"]["games"]:
 								# check if appid is in the valid app ids list
-								if str(item["appid"]) in applist_data:
+								if str(item["appid"]) in applist_data and space != 0:
 									percentage = item["playtime_forever"] / space
 									print (item["playtime_forever"], "over", space)
 									print ("Percentage is ", percentage)
 
+									decimal = round(percentage, 2) * 100
+									decimal = (decimal * 5) % 100
+									decimal = decimal * 0.01
+									decimal = round(decimal, 2)
+
 									if percentage >= 0.0 and percentage <= 0.20:
-										ratings[1] = 1
+										ratings[1] = 1 + decimal
 									elif percentage > 0.21 and percentage <= 0.40:
-										ratings[1] = 2
+										ratings[1] = 2 + decimal
 									elif percentage > 0.41 and percentage <= 0.60:
-										ratings[1] = 3
+										ratings[1] = 3 + decimal
 									elif percentage > 0.61 and percentage <= 0.80:
-										ratings[1] = 4
+										ratings[1] = 4 + decimal
 									elif percentage > 0.81:
-										ratings[1] = 5
+										ratings[1] = 5 + decimal
 
 									ratings[2] = item["appid"]
 
