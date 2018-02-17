@@ -3,6 +3,7 @@ from scipy import stats
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import seaborn as sns
+import collections
 
 def kmeans_clustering():
 
@@ -17,7 +18,7 @@ def kmeans_clustering():
     df_tr_std = stats.zscore(df_tr[clmns])
 
     # Cluster the data
-    kmeans = KMeans(n_clusters=6, random_state=0).fit(df_tr_std)
+    kmeans = KMeans(n_clusters=7, random_state=0).fit(df_tr_std)
     labels = kmeans.labels_
 
     # Insert respective clusters to the original data
@@ -43,4 +44,17 @@ def plotting(df_tr):
     plt.xlabel('Action')
     plt.ylabel('Strategy')
 
+    plt.show()
+    
+def showhistogram(df_tr):
+    
+
+    arr = df_tr.as_matrix(columns = df_tr.columns[10:])
+    arr = arr.ravel()
+
+    counter = collections.Counter(arr)
+
+    print(counter)
+
+    plt.hist(arr, bins=7, align='left')
     plt.show()
