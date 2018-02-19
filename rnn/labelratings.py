@@ -7,7 +7,7 @@ with open("applist_genre.json", encoding="utf8") as applist:
   applist_data = json.load(applist)
 
 # Retrieve file names in the directory
-file_list = os.listdir("dataset/")
+file_list = os.listdir("datasetfirst/")
 
 for file_name in file_list:
 	# user id, rating, game id
@@ -15,7 +15,7 @@ for file_name in file_list:
 
 		# Open the file indicated by the current file name
 	if file_name != ".DS_Store":
-		with open("dataset/" + file_name) as src_file:
+		with open("datasetfirst/" + file_name) as src_file:
 
 			try:
 			   data = json.load(src_file)
@@ -25,6 +25,7 @@ for file_name in file_list:
 		totalgametime = 0.0
 		lowest_playtime = 0.0
 		highest_playtime = 0.0
+		percentage = 0.0
 
 		if data is not None:
 			if data["response"] is not None:
@@ -93,5 +94,17 @@ for file_name in file_list:
 											str(ratings[1]), 
 											str(ratings[2]),
 										])	
-							
-							
+
+								elif str(item["appid"]) in applist_data and space == 0:
+									percentage = item["playtime_forever"]
+									if percentage >= 0.0:
+										ratings[1] = 1
+
+									ratings[2] = item["appid"]
+
+									with open('ratings.csv', 'a', newline='') as csvfile:				
+											csvwriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+											csvwriter.writerow([ratings[0],
+												str(ratings[1]), 
+												str(ratings[2]),
+											])	
