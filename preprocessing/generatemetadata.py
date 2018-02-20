@@ -26,8 +26,7 @@ for item in applist_data:
 					is_genre = "genres" in r[str(item)]["data"]
 
 					if is_genre:
-
-						# Get the "genre" element from the response 
+						print("Successfully queried", str(item))
 						
 						game_data[1] = r[str(item)]["data"]["name"]
 
@@ -45,13 +44,9 @@ for item in applist_data:
 							
 				else:
 					print(str(item))
-					item["genres"] = []
 			else:
 				print("Success is a NoneType")
-				item["genres"] = []
 		else:
 			print("current_appid is a NoneType")
-			item["genres"] = []
 	else:
 		print("r is a NoneType")
-		item["genres"] = []
